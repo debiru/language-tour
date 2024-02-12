@@ -556,6 +556,12 @@ fn lesson_html(page: Lesson) -> String {
         h("a", [#("href", "/")], [text("Gleam Language Tour")]),
       ]),
       h("article", [#("id", "playground")], [
+        h("aside", [#("id", "toc"), #("hidden", "hidden")], [
+          h("h2", [], [text("Table of Contents")]),
+          htmb.dangerous_unescaped_fragment(string_builder.from_string(
+            string.join(list.map(result.unwrap(load_content(), []), contents_list_html), "\n"),
+          )),
+        ]),
         h("section", [#("id", "left")], [
           h("h2", [], [text(page.name)]),
           htmb.dangerous_unescaped_fragment(string_builder.from_string(
@@ -580,6 +586,7 @@ fn lesson_html(page: Lesson) -> String {
         htmb.dangerous_unescaped_fragment(string_builder.from_string(page.code)),
       ]),
       h("script", [#("type", "module"), #("src", "/index.js")], []),
+      h("script", [#("src", "/translate.js")], []),
     ]),
   ])
   |> htmb.render_page("html")
