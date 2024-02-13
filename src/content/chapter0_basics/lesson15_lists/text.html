@@ -1,19 +1,31 @@
 <p>
   Lists are ordered collections of values.
 </p>
+<p data-translate="ja">
+  リストは順序付けられた値の集合です。
+</p>
 <p>
   <code>List</code> is a generic type, having a type parameter
   for the type of values it contains. A list of ints has the type
   <code>List(Int)</code>, and a list of strings has the type
   <code>List(String)</code>.
 </p>
+<p data-translate="ja">
+  <code>List</code> は汎用型であり、格納する値の型を表す型パラメータを持ちます。整数型のリストは <code>List(Int)</code> 型であり、文字列型のリストは <code>List(String)</code> 型です。
+</p>
 <p>
   Lists are immutable single-linked lists, meaning they are very efficient to
   add and remove elements from the front of the list.
+</p>
+<p data-translate="ja">
+  リストは不変（イミュータブル）の単一連結リスト（Linked List）です。これはリストの先頭から要素を追加したり削除したりするのが非常に効率的にできることを意味します。
 </p>
 <p>
   Counting the length of a list or getting elements from other positions in the
   list is expensive and rarely done. It is rare to write algorithms that index
   into sequences in Gleam, but when they are written a list is not the right
   choice of data structure.
+</p>
+<p data-translate="ja">
+  リストの長さを数えたり、リストの他の位置から要素を取り出したりすることはコストが大きくめったにできることではありません。Gleam でシーケンスにインデックスを付けるアルゴリズムを書くことは稀ですが、そのようなアルゴリズムを書く場合、リストはデータ構造として正しい選択肢ではありません。
 </p>

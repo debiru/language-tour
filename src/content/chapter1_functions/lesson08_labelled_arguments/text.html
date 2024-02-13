@@ -2,22 +2,35 @@
   When functions take several arguments it can be difficult to remember what the
   arguments are, and what order they are expected in.
 </p>
+<p data-translate="ja">
+  関数が複数の引数を取る場合、その引数が何であるか、またどのような順序で引数が指定されるかを覚えておくことは困難です。
+</p>
 <p>
   To help with this Gleam supports labelled arguments, where function arguments
   are given an external label in addition to their internal name. These labels
   are written before the argument name in the function definition.
 </p>
+<p data-translate="ja">
+  このような場合に役立つように、Gleam はラベル付き引数をサポートしており、関数の引数には内部名に加えて外部ラベルが与えられます。これらのラベルは、関数定義の引数名の前に記述されます。
+</p>
 <p>
   When labelled arguments are used the order of the arguments does not matter,
   but all unlabelled arguments must come before labelled arguments.
+</p>
+<p data-translate="ja">
+  ラベル付き引数を使用する場合、引数の順序は問題ではありませんが、ラベルの付いていない引数はすべてラベル付き引数の前に来る必要があります。
 </p>
 <p>
   There is no performance cost to using labelled arguments, it does not allocate
   a dictionary or perform any other runtime work.
 </p>
+<p data-translate="ja">
+  ラベル付き引数を使用することによるパフォーマンス上のコストはなく、辞書の割当やその他の実行時の作業も行いません。
+</p>
 <p>
   Labels are optional when calling a function, it is up to the programmer to
   decide what is clearest in their code.
 </p>
-
-
+<p data-translate="ja">
+  関数を呼び出す際にラベルを付けるかどうかは任意であり、プログラマが自分のコードで何が最も明快であるかを決めることができます。
+</p>

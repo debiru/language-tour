@@ -1,7 +1,13 @@
 <p>Gleam's <code>Float</code> type represents numbers that are not integers.</p>
+<p data-translate="ja">
+  Gleam の <code>Float</code> 型は整数以外の数値を表します。
+</p>
 <p>
   Gleam's numerical operators are not overloaded, so there are dedicatated
   operators for working with floats.
+</p>
+<p data-translate="ja">
+  Gleam の数値演算子はオーバーロードされていないので、浮動小数点数専用の演算子があります。
 </p>
 <p>
   Floats are represented as 64 bit floating point numbers on both the Erlang and
@@ -9,19 +15,31 @@
   respective runtimes, so their exact behaviour will be slightly different
   on the two runtimes.
 </p>
+<p data-translate="ja">
+  Erlang と JavaScript のランタイムでは浮動小数点数は 64 ビット浮動小数点数で表現されます。浮動小数点の動作はそれぞれのランタイムに固有なので、正確な動作は 2 つのランタイムで少し異なります。
+</p>
 <p>
   Under the JavaScript runtime, exceeding the maximum (or minimum) representable
   value for a floating point value will result in <code>Infinity</code> (or
   <code>-Infinity</code>). Should you try to divide two infinities you will
   get <code>NaN</code> as a result.
 </p>
+<p data-translate="ja">
+  JavaScript ランタイムでは、浮動小数点値の表現可能な最大値（または最小値）を超えると <code>Intinify</code>（または <code>-Infinity</code>）になります。2 つの無限を割り算しようとすると、結果として <code>NaN</code> が得られます。
+</p>
 <p>
   When running on the BEAM any overflow will raise an error. So there is
   no <code>NaN</code> or <code>Infinity</code> float value in the Erlang
   runtime.
 </p>
+<p data-translate="ja">
+  BEAM 上で実行する場合、オーバーフローはエラーとなります。そのため Erlang ランタイムには <code>NaN</code> や <code>Infinity</code> の浮動小数点値はありません。
+</p>
 <p>
   Division by zero will not overflow, but is instead defined to be zero.
+</p>
+<p data-translate="ja">
+  ゼロによる除算はオーバーフローしませんが、代わりにゼロと定義されます。
 </p>
 <p>
   The
@@ -29,4 +47,7 @@
     ><code>gleam/float</code></a
   >
   standard library module contains functions for working with floats.
+</p>
+<p data-translate="ja">
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/float.html"><code>gleam/float</code></a> 標準ライブラリモジュールには浮動小数点数を扱う関数が含まれています。
 </p>

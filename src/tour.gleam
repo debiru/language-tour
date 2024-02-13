@@ -48,10 +48,16 @@ const erlang_the_movie = [
 "
 
 const home_html = "
+<div data-note=\"info\">
+  <p data-translate=\"ja\">このページは <a href=\"https://tour.gleam.run/\">https://tour.gleam.run/</a> を <a href=\"https://twitter.com/debiru_R\">@debiru_R</a> が日本語翻訳したものです。<code>gleam.lavoscore.org</code> は @debiru_R が管理しているドメイン名です。</p>
+</div>
 <p>
   This tour covers all aspects of the Gleam language, and assuming you have some
   prior programming experience should teach you everything you need to write
   real programs in Gleam.
+</p>
+<p data-translate=\"ja\">
+  このツアーでは、Gleam 言語のあらゆる側面をカバーし、ある程度のプログラミング経験があることを前提に、Gleam で実際のプログラムを書くために必要なことをすべて教えてくれるはずです。
 </p>
 <p>
   The tour is interactive! The code shown is editable and will be compiled and
@@ -60,15 +66,24 @@ const home_html = "
   compile errors and warnings. To evaluate Gleam code the tour compiles Gleam to
   JavaScript and runs it, all entirely within your browser window.
 </p>
+<p data-translate=\"ja\">
+  このツアーはインタラクティブです！表示されているコードは編集可能で、あなたが入力するたびにコンパイルされ評価されます。<code>io.println</code> や <code>io.debug</code> を使って表示されたものは、コンパイルエラーや警告とともに下のセクションに表示されます。Gleam コードを評価するために、このツアーは Gleam を JavaScript にコンパイルして実行します。これらはすべてブラウザのウィンドウ内で行われます。
+</p>
 <p>
   If at any point you get stuck or have a question do not hesitate to ask in
   <a href=\"https://discord.gg/Fm8Pwmy\">the Gleam Discord server</a>. We're here
   to help, and if you find something confusing then it's likely others will too,
   and we want to know about it so we can improve the tour.
 </p>
+<p data-translate=\"ja\">
+  もし行き詰まったり、質問がある場合は、遠慮なく <a href=\"https://discord.gg/Fm8Pwmy\">Gleam Discord サーバ</a> でお尋ねください。もし、あなたが分かりにくいと感じたことがあれば、他の人も同じように感じている可能性があります。このツアーをより良いものにするために、私たちはそれを知りたいのです。
+</p>
 <p>
   OK, let's go. Click \"Next\" to get started, or click \"Contents\" to jump to a
   specific topic.
+</p>
+<p data-translate=\"ja\">
+  OK, それでは始めましょう。\"Next\" をクリックして始めるか、\"Contents\" をクリックして特定のトピックにジャンプしてください。
 </p>
 "
 

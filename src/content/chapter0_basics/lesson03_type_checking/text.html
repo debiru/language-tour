@@ -2,17 +2,29 @@
   Gleam has a robust static type system that helps you as you write and edit
   code, catching mistakes and showing you where to make changes.
 </p>
+<p data-translate="ja">
+  Gleam には堅牢な静的型システムがあり、コードを書いたり編集したりする際に、間違いを発見し変更すべき箇所を示してくれます。
+</p>
 <p>
   Uncomment the line <code>io.println(4)</code> and see how a compile time error
   is reported as the <code>io.println</code> function only works with strings,
   not ints.
 </p>
+<p data-translate="ja">
+  <code>io.println(4)</code> の行のコメントを解除し、<code>io.println</code> 関数が整数ではなく文字列に対してのみ動作するため、コンパイル時にエラーが報告されることを確認してください。
+</p>
 <p>
   To fix the code change the code to call the <code>io.debug</code>
   function instead, as it will print a value of any type.
+</p>
+<p data-translate="ja">
+  このコードを修正するには、任意の型の値を出力するための <code>io.debug</code> 関数を呼び出すようにコードを変更してください。
 </p>
 <p>
   Gleam has no <code>null</code>, no implicit conversions, no exceptions, and
   always performs full type checking. If the code compiles you can be reasonably
   confident it does not have any inconsistencies that may cause bugs or crashes.
+</p>
+<p data-translate="ja">
+  Gleam には <code>null</code> も、暗黙の変換も、例外もなく、常に完全な型チェックを行います。コードがコンパイルされれば、バグやクラッシュの原因となるような不整合がないことを確信できます。
 </p>

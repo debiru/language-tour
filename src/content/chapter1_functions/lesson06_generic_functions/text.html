@@ -2,24 +2,39 @@
   Up until now each function has accepted precisely one type for each of its
   arguments.
 </p>
+<p data-translate="ja">
+  これまで各関数は、引数に対して正確に 1 つの型を受け入れてきました。
+</p>
 <p>
   The <code>twice</code> function for example only worked with functions that
   would take and return ints. This is overly restrictive, it should be possible
   to use this function with any type, so long as the function and the initial
   value are compatible.
 </p>
+<p data-translate="ja">
+  例えば <code>twice</code> 関数は、Int 型を受け取って返す関数のみに対応していました。これは過度に限定的な関数になってしまっていますが、関数と初期値に互換性がある限り、どんな型でもこの関数を使うことができるようにしたいでしょう。
+</p>
 <p>
   To enable this Gleam support <em>generics</em>, also known as
   <em>parametric polymorphism</em>.
+</p>
+<p data-translate="ja">
+  これを可能にするために、Gleam は<em>ジェネリクス</em>（パラメトリック・ポリモーフィズムと呼ばれる）をサポートしています。
 </p>
 <p>
   This works by instead of specifying a concrete type, a type variable is used
   which stands in for whatever specific type is being used when the function is
   called. These type variables are written with a lowercase name.
 </p>
+<p data-translate="ja">
+  これは、具体的な型を指定する代わりに、関数が呼び出されたときに使用される特定の型を表す型変数を使用します。型変数は小文字の名前で記述されます。
+</p>
 <p>
   Type variables are not like an <code>any</code> type, they get replaced with a
   specific type each time the function is called. Try uncommenting
   <code>twice(10, exclaim)</code> to see the compiler error from trying to use a
   type variable as an int and a string at the same time.
+</p>
+<p data-translate="ja">
+  型変数は <code>any</code> 型とは異なり、関数が呼び出される度に特定の型に置き換えられます。型変数を Int と String として同時に使おうとしたというコンパイルエラーを確認するために <code>twice(10, exclaim)</code> をアンコメントしてみましょう。
 </p>

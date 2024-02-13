@@ -3,16 +3,28 @@
   expression is evaluated in order and the value of the last expression is
   returned.
 </p>
+<p data-translate="ja">
+  ブロックは、波括弧でグループ化された 1 つ以上の式です。各式は順番に評価され、最後の式の値が返されます。
+</p>
 <p>
   Any variables assigned within the block can only be used within the block.
+</p>
+<p data-translate="ja">
+  ブロック内で割り当てられた変数は、ブロック内でのみ使用できます。
 </p>
 <p>
   Try uncommenting <code>io.debug(degrees)</code> to see the compile error from
   trying to use a variable that is not in scope.
 </p>
+<p data-translate="ja">
+  スコープにない変数を使おうとしたときのコンパイルエラーを確認するために <code>io.debug(degrees)</code> をアンコメントしてみてください。
+</p>
 <p>
   Blocks can also be used to change the order of evaluation of binary operators
-  expressions. 
+  expressions.
+</p>
+<p data-translate="ja">
+  ブロックは、二項演算子式の評価順序を変更するためにも使用できます。
 </p>
 <p>
  <code>*</code> binds more tightly than <code>+</code> so the expression
@@ -20,4 +32,7 @@
  evaluated first to make the expression evaluate to 9 then the expression can be
  wrapped in a block: <code>{ 1 + 2 } * 3</code>. This is similar to grouping
  with parentheses in some other languages.
+</p>
+<p data-translate="ja">
+  <code>*</code> は <code>+</code> よりも強く結合するので、式 <code>1 + 2 * 3</code> の評価結果は 7 になります。もし式の結果を 9 に評価するために <code>1 + 2</code> を先に評価する必要がある場合は、<code>{ 1 + 2 } * 3</code> のように式をブロックで囲むことができます。これはいくつかの他の言語における、丸括弧によるグループ化と似ています。
 </p>
