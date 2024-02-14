@@ -2,6 +2,7 @@
   'use strict';
 
   const NS = {
+    url: new URL(document.URL),
     path: location.pathname,
     html: document.documentElement,
     head: document.head,
@@ -13,6 +14,16 @@
     setNS() {
       NS.toc = document.getElementById('toc');
       NS.navbar = document.querySelector('.navbar');
+      NS.code = document.querySelector('#editor-target textarea');
+    },
+    customControls() {
+      NS.customControls = Util.createElement('div', {id: 'customControl'});
+      NS.navbar.append(NS.customControls);
+      Sub.addStyle([
+        '#customControl { display: flex; align-items: center; gap: 8px; }',
+        '#customControl > * { height: fit-content; }',
+        '#customControl #translate__show-original-text { flex: 0 0 auto; }'
+      ]);
     },
     tocAlways() {
       if (/^\/table-of-contents\//.test(NS.path)) return;
@@ -54,10 +65,8 @@
     originalTextSwitcher() {
       const HTML_ATTR = 'data-show-original-text';
       const STORAGE_KEY = 'translate__show-original-text';
-      const customControls = Util.createElement('div', {id: 'customControl'});
-      const switcherButton = Util.createElement('button', {type: 'button'}, '原語を表示する');
-      customControls.append(switcherButton);
-      NS.navbar.append(customControls);
+      const switcherButton = Util.createElement('button', {type: 'button', id: STORAGE_KEY}, '原語を表示する');
+      NS.customControls.append(switcherButton);
 
       NS.html.setAttribute(HTML_ATTR, 'false');
       Util.addEvent(switcherButton, 'click', () => {
@@ -82,6 +91,21 @@
         const isNavLink = elem.closest('nav.prev-next') != null;
         if (isNavLink) continue;
         elem.setAttribute('target', '_blank');
+      }
+    },
+    setCode() {
+      const saveButton = Util.createElement('button', {type: 'button', id: 'translate__save-code'}, 'Save Code');
+      NS.customControls.append(saveButton);
+
+      Util.addEvent(saveButton, 'click', () => {
+        const base64 = Util.base64.encode(NS.code.value);
+        Util.url.updateQuery({code: base64});
+      });
+
+      const codeQuery = NS.url.searchParams.get('code');
+      if (codeQuery != null) {
+        NS.code.value = Util.base64.decode(codeQuery);
+        Util.triggerEvent(NS.code, 'input');
       }
     },
   };
@@ -116,6 +140,28 @@
       get(key) { return JSON.parse(localStorage.getItem(key)); },
       set(key, value) { localStorage.setItem(key, JSON.stringify(value)); },
     },
+    base64: {
+      fromBytes(bytes) { return btoa(String.fromCodePoint(...bytes)); },
+      toBytes(base64) { return Uint8Array.from(atob(base64), m => m.codePointAt(0)); },
+      encode(text) { return Util.base64.fromBytes(new TextEncoder().encode(text)); },
+      decode(base64) { return new TextDecoder().decode(Util.base64.toBytes(base64)); },
+    },
+    url: {
+      replace(url) {
+        history.replaceState({}, '', url);
+      },
+      setQuery(assoc) {
+        const url = new URL(document.URL);
+        for (const [key, value] of Object.entries(assoc)) {
+          url.searchParams.set(key, value);
+        }
+        return url;
+      },
+      updateQuery(assoc) {
+        const url = Util.url.setQuery(assoc);
+        Util.url.replace(url.href);
+      },
+    },
     empty(arg) {
       let isEmpty = arg == null || arg === false || arg === '';
       if (!isEmpty) {
@@ -134,8 +180,7 @@
     },
     createElement(elemName, attrs, content) {
       const elem = document.createElement(elemName);
-      for (const attrKey of Object.keys(attrs)) {
-        const attrVal = attrs[attrKey];
+      for (const [attrKey, attrVal] of Object.entries(attrs)) {
         elem.setAttribute(attrKey, attrVal);
       }
       if (content != null) elem.textContent = content;
