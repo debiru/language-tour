@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><title>Use sugar - The Gleam Language Tour</title><meta name="description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="og:type" content="website"></meta><meta property="og:title" content="Use sugar - The Gleam Language Tour"></meta><meta property="og:description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="og:url" content="https://tour.gleam.run//advanced-features/use-sugar"></meta><meta property="og:image" content="https://gleam.run/images/og-image.png"></meta><meta property="twitter:card" content="summary_large_image"></meta><meta property="twitter:url" content="https://tour.gleam.run//advanced-features/use-sugar"></meta><meta property="twitter:title" content="Use sugar - The Gleam Language Tour"></meta><meta property="twitter:description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="twitter:image" content="https://gleam.run/images/og-image.png"></meta><link rel="shortcut icon" href="https://gleam.run/images/lucy-circle.svg"></link><link rel="stylesheet" href="/style.css"></link><script defer="" data-domain="tour.gleam.run" src="https://plausible.io/js/script.js"></script></head><body><nav class="navbar"><a href="/">Gleam Language Tour</a></nav><article id="playground"><aside id="toc" hidden="hidden"><h2>Table of Contents</h2><h3 class="mb-0">Basics</h3><ul><li><a href="/basics/hello-world">Hello world</a></li><li><a href="/basics/unqualified-imports">Unqualified imports</a></li><li><a href="/basics/type-checking">Type checking</a></li><li><a href="/basics/ints">Ints</a></li><li><a href="/basics/floats">Floats</a></li><li><a href="/basics/number-formats">Number formats</a></li><li><a href="/basics/equality">Equality</a></li><li><a href="/basics/strings">Strings</a></li><li><a href="/basics/bools">Bools</a></li><li><a href="/basics/assignments">Assignments</a></li><li><a href="/basics/discard-patterns">Discard patterns</a></li><li><a href="/basics/type-annotations">Type annotations</a></li><li><a href="/basics/type-aliases">Type aliases</a></li><li><a href="/basics/blocks">Blocks</a></li><li><a href="/basics/lists">Lists</a></li><li><a href="/basics/constants">Constants</a></li></ul>
+<h3 class="mb-0">Functions</h3><ul><li><a href="/functions/functions">Functions</a></li><li><a href="/functions/higher-order-functions">Higher order functions</a></li><li><a href="/functions/anonymous-functions">Anonymous functions</a></li><li><a href="/functions/function-captures">Function captures</a></li><li><a href="/functions/generic-functions">Generic functions</a></li><li><a href="/functions/pipelines">Pipelines</a></li><li><a href="/functions/labelled-arguments">Labelled arguments</a></li><li><a href="/functions/documentation-comments">Documentation comments</a></li><li><a href="/functions/deprecations">Deprecations</a></li></ul>
+<h3 class="mb-0">Flow control</h3><ul><li><a href="/flow-control/case-expressions">Case expressions</a></li><li><a href="/flow-control/variable-patterns">Variable patterns</a></li><li><a href="/flow-control/string-patterns">String patterns</a></li><li><a href="/flow-control/list-patterns">List patterns</a></li><li><a href="/flow-control/recursion">Recursion</a></li><li><a href="/flow-control/tail-calls">Tail calls</a></li><li><a href="/flow-control/list-recursion">List recursion</a></li><li><a href="/flow-control/multiple-subjects">Multiple subjects</a></li><li><a href="/flow-control/alternative-patterns">Alternative patterns</a></li><li><a href="/flow-control/pattern-aliases">Pattern aliases</a></li><li><a href="/flow-control/guards">Guards</a></li></ul>
+<h3 class="mb-0">Data types</h3><ul><li><a href="/data-types/tuples">Tuples</a></li><li><a href="/data-types/custom-types">Custom types</a></li><li><a href="/data-types/records">Records</a></li><li><a href="/data-types/record-accessors">Record accessors</a></li><li><a href="/data-types/record-updates">Record updates</a></li><li><a href="/data-types/nil">Nil</a></li><li><a href="/data-types/results">Results</a></li><li><a href="/data-types/bit-arrays">Bit arrays</a></li></ul>
+<h3 class="mb-0">Standard library</h3><ul><li><a href="/standard-library/standard-library-package">Standard library package</a></li><li><a href="/standard-library/list-module">List module</a></li><li><a href="/standard-library/result-module">Result module</a></li><li><a href="/standard-library/dict-module">Dict module</a></li><li><a href="/standard-library/option-module">Option module</a></li></ul>
+<h3 class="mb-0">Advanced features</h3><ul><li><a href="/advanced-features/use">Use</a></li><li><a href="/advanced-features/use-sugar">Use sugar</a></li><li><a href="/advanced-features/todo">Todo</a></li><li><a href="/advanced-features/panic">Panic</a></li><li><a href="/advanced-features/externals">Externals</a></li><li><a href="/advanced-features/multi-target-externals">Multi target externals</a></li><li><a href="/advanced-features/external-gleam-fallbacks">External gleam fallbacks</a></li></ul><h3 class="mb-0">Finally...</h3><ul><li><a href="/what-next/">What next? ✨</a></li></ul></aside><section id="left"><h2>Use sugar</h2><p>
+  The <code>use</code> expression is syntactic sugar for a regular function call
+  and an anonymous function.
+</p>
+<p data-translate="ja">
+  <code>use</code> 式は、通常の関数呼び出しと無名関数のための糖衣構文です。
+</p>
+<p>This code:</p>
+<p data-translate="ja">
+  コード：
+</p>
+<pre>
+use a, b <- my_function
+next(a)
+next(b)
+</pre>
+<p>Expands into this code:</p>
+<p data-translate="ja">
+  コードを展開したもの：
+</p>
+<pre>
+my_function(fn(a, b) {
+  next(a)
+  next(b)
+})
+</pre>
+<p>
+  To ensure that your <code>use</code> code works and is as understandable as
+  possible, the right-hand-side ideally should be a function call rather than a
+  pipeline or other expression, which is typically more difficult to read.
+</p>
+<p data-translate="ja">
+  <code>use</code> コードを動作させてできるだけ理解しやすくなるように、右項はパイプラインや他の式ではなく、関数呼び出しにするのが理想的です。
+</p>
+<p>
+  <code>use</code> is an expression like everything else in Gleam, so it can be
+  placed within blocks.
+</p>
+<p data-translate="ja">
+  <code>use</code> は、Gleam の他の式と同じように、ブロック内に置くことができます。
+</p>
+<nav class="prev-next"><a href="/advanced-features/use">Back</a> — <a href="/table-of-contents">Contents</a> — <a href="/advanced-features/todo">Next</a></nav></section><section id="right"><section id="editor"><div id="editor-target"></div></section><aside id="output"></aside></section></article><script type="gleam" id="code">import gleam/io
+import gleam/result
+
+pub fn main() {
+  let x = {
+    use username <- result.try(get_username())
+    use password <- result.try(get_password())
+    use greeting <- result.map(log_in(username, password))
+    greeting <> ", " <> username
+  }
+
+  case x {
+    Ok(greeting) -> io.println(greeting)
+    Error(error) -> io.println("ERROR:" <> error)
+  }
+}
+
+// Here are some pretend functions for this example:
+
+fn get_username() {
+  Ok("alice")
+}
+
+fn get_password() {
+  Ok("hunter2")
+}
+
+fn log_in(_username: String, _password: String) {
+  Ok("Welcome")
+}
+</script><script type="module" src="/index.js"></script><script src="/translate.js"></script></body></html>

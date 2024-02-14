@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><title>Externals - The Gleam Language Tour</title><meta name="description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="og:type" content="website"></meta><meta property="og:title" content="Externals - The Gleam Language Tour"></meta><meta property="og:description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="og:url" content="https://tour.gleam.run//advanced-features/externals"></meta><meta property="og:image" content="https://gleam.run/images/og-image.png"></meta><meta property="twitter:card" content="summary_large_image"></meta><meta property="twitter:url" content="https://tour.gleam.run//advanced-features/externals"></meta><meta property="twitter:title" content="Externals - The Gleam Language Tour"></meta><meta property="twitter:description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="twitter:image" content="https://gleam.run/images/og-image.png"></meta><link rel="shortcut icon" href="https://gleam.run/images/lucy-circle.svg"></link><link rel="stylesheet" href="/style.css"></link><script defer="" data-domain="tour.gleam.run" src="https://plausible.io/js/script.js"></script></head><body><nav class="navbar"><a href="/">Gleam Language Tour</a></nav><article id="playground"><aside id="toc" hidden="hidden"><h2>Table of Contents</h2><h3 class="mb-0">Basics</h3><ul><li><a href="/basics/hello-world">Hello world</a></li><li><a href="/basics/unqualified-imports">Unqualified imports</a></li><li><a href="/basics/type-checking">Type checking</a></li><li><a href="/basics/ints">Ints</a></li><li><a href="/basics/floats">Floats</a></li><li><a href="/basics/number-formats">Number formats</a></li><li><a href="/basics/equality">Equality</a></li><li><a href="/basics/strings">Strings</a></li><li><a href="/basics/bools">Bools</a></li><li><a href="/basics/assignments">Assignments</a></li><li><a href="/basics/discard-patterns">Discard patterns</a></li><li><a href="/basics/type-annotations">Type annotations</a></li><li><a href="/basics/type-aliases">Type aliases</a></li><li><a href="/basics/blocks">Blocks</a></li><li><a href="/basics/lists">Lists</a></li><li><a href="/basics/constants">Constants</a></li></ul>
+<h3 class="mb-0">Functions</h3><ul><li><a href="/functions/functions">Functions</a></li><li><a href="/functions/higher-order-functions">Higher order functions</a></li><li><a href="/functions/anonymous-functions">Anonymous functions</a></li><li><a href="/functions/function-captures">Function captures</a></li><li><a href="/functions/generic-functions">Generic functions</a></li><li><a href="/functions/pipelines">Pipelines</a></li><li><a href="/functions/labelled-arguments">Labelled arguments</a></li><li><a href="/functions/documentation-comments">Documentation comments</a></li><li><a href="/functions/deprecations">Deprecations</a></li></ul>
+<h3 class="mb-0">Flow control</h3><ul><li><a href="/flow-control/case-expressions">Case expressions</a></li><li><a href="/flow-control/variable-patterns">Variable patterns</a></li><li><a href="/flow-control/string-patterns">String patterns</a></li><li><a href="/flow-control/list-patterns">List patterns</a></li><li><a href="/flow-control/recursion">Recursion</a></li><li><a href="/flow-control/tail-calls">Tail calls</a></li><li><a href="/flow-control/list-recursion">List recursion</a></li><li><a href="/flow-control/multiple-subjects">Multiple subjects</a></li><li><a href="/flow-control/alternative-patterns">Alternative patterns</a></li><li><a href="/flow-control/pattern-aliases">Pattern aliases</a></li><li><a href="/flow-control/guards">Guards</a></li></ul>
+<h3 class="mb-0">Data types</h3><ul><li><a href="/data-types/tuples">Tuples</a></li><li><a href="/data-types/custom-types">Custom types</a></li><li><a href="/data-types/records">Records</a></li><li><a href="/data-types/record-accessors">Record accessors</a></li><li><a href="/data-types/record-updates">Record updates</a></li><li><a href="/data-types/nil">Nil</a></li><li><a href="/data-types/results">Results</a></li><li><a href="/data-types/bit-arrays">Bit arrays</a></li></ul>
+<h3 class="mb-0">Standard library</h3><ul><li><a href="/standard-library/standard-library-package">Standard library package</a></li><li><a href="/standard-library/list-module">List module</a></li><li><a href="/standard-library/result-module">Result module</a></li><li><a href="/standard-library/dict-module">Dict module</a></li><li><a href="/standard-library/option-module">Option module</a></li></ul>
+<h3 class="mb-0">Advanced features</h3><ul><li><a href="/advanced-features/use">Use</a></li><li><a href="/advanced-features/use-sugar">Use sugar</a></li><li><a href="/advanced-features/todo">Todo</a></li><li><a href="/advanced-features/panic">Panic</a></li><li><a href="/advanced-features/externals">Externals</a></li><li><a href="/advanced-features/multi-target-externals">Multi target externals</a></li><li><a href="/advanced-features/external-gleam-fallbacks">External gleam fallbacks</a></li></ul><h3 class="mb-0">Finally...</h3><ul><li><a href="/what-next/">What next? ✨</a></li></ul></aside><section id="left"><h2>Externals</h2><p>
+  Sometimes in our projects we want to use code written in other languages, most
+  commonly Erlang and JavaScript, depending on which runtime is being used.
+  Gleam's <em>external functions</em> and <em>external types</em> allow us to
+  import and use this non-Gleam code.
+</p>
+<p data-translate="ja">
+  私たちのプロジェクトでは、他の言語で書かれたコードを使いたいことがたまにあります。ランタイムによっては、Erlang や JavaScript がよく使われます。Gleam の外部関数と外部型を使えば、Gleam 以外のコードをインポートして使うことができます。
+</p>
+<p>
+  An external type is one that has no constructors. Gleam doesn't know what
+  shape it has or how to create one, it only knows that it exists.
+</p>
+<p data-translate="ja">
+  外部型とは、コンストラクタを持たない型のことです。Gleam はその型がどのような形をしているのか、どのように作成するのかを知りません。
+</p>
+<p>
+  An external function is one that has the <code>@external</code> attribute on
+  it, directing the compiler to use the specified module function as the
+  implementation, instead of Gleam code.
+</p>
+<p data-translate="ja">
+  外部関数とは、<code>@external</code> 属性を持つ関数のことで、Gleam コードではなく、指定されたモジュール関数を実装として使用するようにコンパイラに指示します。
+</p>
+<p>
+  The compiler can't tell the types of functions written in other languages, so
+  when the external attribute is given type annotations must be provided. Gleam
+  trusts that the type given is correct so an inaccurate type annotation can
+  result in unexpected behaviour and crashes at runtime. Be careful!
+</p>
+<p data-translate="ja">
+  コンパイラは他の言語で書かれた関数の型を知ることができないため、external 属性が指定された場合は型アノテーションを提供しなければなりません。Gleam は指定された型が正しいと信じているので、不正確な型アノテーションは予期しない動作や実行時のクラッシュに繋がります。注意してください！
+</p>
+<p>
+  External functions are useful but should be used sparingly. Prefer to write
+  Gleam code where possible.
+</p>
+<p data-translate="ja">
+  外部関数は便利ですが、使用は控えめにしてください。可能な限り Gleam のコードを書くようにしてください。
+</p>
+<nav class="prev-next"><a href="/advanced-features/panic">Back</a> — <a href="/table-of-contents">Contents</a> — <a href="/advanced-features/multi-target-externals">Next</a></nav></section><section id="right"><section id="editor"><div id="editor-target"></div></section><aside id="output"></aside></section></article><script type="gleam" id="code">import gleam/io
+
+// A type with no Gleam constructors
+pub type DateTime
+
+// An external function that creates an instance of the type
+@external(javascript, "./my_package_ffi.mjs", "now")
+pub fn now() -> DateTime
+
+// The `now` function in `./my_package_ffi.mjs` looks like this:
+// export function now() {
+//   return new Date();
+// }
+
+pub fn main() {
+  io.debug(now())
+}
+</script><script type="module" src="/index.js"></script><script src="/translate.js"></script></body></html>

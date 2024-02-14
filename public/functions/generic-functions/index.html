@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><title>Generic functions - The Gleam Language Tour</title><meta name="description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="og:type" content="website"></meta><meta property="og:title" content="Generic functions - The Gleam Language Tour"></meta><meta property="og:description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="og:url" content="https://tour.gleam.run//functions/generic-functions"></meta><meta property="og:image" content="https://gleam.run/images/og-image.png"></meta><meta property="twitter:card" content="summary_large_image"></meta><meta property="twitter:url" content="https://tour.gleam.run//functions/generic-functions"></meta><meta property="twitter:title" content="Generic functions - The Gleam Language Tour"></meta><meta property="twitter:description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="twitter:image" content="https://gleam.run/images/og-image.png"></meta><link rel="shortcut icon" href="https://gleam.run/images/lucy-circle.svg"></link><link rel="stylesheet" href="/style.css"></link><script defer="" data-domain="tour.gleam.run" src="https://plausible.io/js/script.js"></script></head><body><nav class="navbar"><a href="/">Gleam Language Tour</a></nav><article id="playground"><aside id="toc" hidden="hidden"><h2>Table of Contents</h2><h3 class="mb-0">Basics</h3><ul><li><a href="/basics/hello-world">Hello world</a></li><li><a href="/basics/unqualified-imports">Unqualified imports</a></li><li><a href="/basics/type-checking">Type checking</a></li><li><a href="/basics/ints">Ints</a></li><li><a href="/basics/floats">Floats</a></li><li><a href="/basics/number-formats">Number formats</a></li><li><a href="/basics/equality">Equality</a></li><li><a href="/basics/strings">Strings</a></li><li><a href="/basics/bools">Bools</a></li><li><a href="/basics/assignments">Assignments</a></li><li><a href="/basics/discard-patterns">Discard patterns</a></li><li><a href="/basics/type-annotations">Type annotations</a></li><li><a href="/basics/type-aliases">Type aliases</a></li><li><a href="/basics/blocks">Blocks</a></li><li><a href="/basics/lists">Lists</a></li><li><a href="/basics/constants">Constants</a></li></ul>
+<h3 class="mb-0">Functions</h3><ul><li><a href="/functions/functions">Functions</a></li><li><a href="/functions/higher-order-functions">Higher order functions</a></li><li><a href="/functions/anonymous-functions">Anonymous functions</a></li><li><a href="/functions/function-captures">Function captures</a></li><li><a href="/functions/generic-functions">Generic functions</a></li><li><a href="/functions/pipelines">Pipelines</a></li><li><a href="/functions/labelled-arguments">Labelled arguments</a></li><li><a href="/functions/documentation-comments">Documentation comments</a></li><li><a href="/functions/deprecations">Deprecations</a></li></ul>
+<h3 class="mb-0">Flow control</h3><ul><li><a href="/flow-control/case-expressions">Case expressions</a></li><li><a href="/flow-control/variable-patterns">Variable patterns</a></li><li><a href="/flow-control/string-patterns">String patterns</a></li><li><a href="/flow-control/list-patterns">List patterns</a></li><li><a href="/flow-control/recursion">Recursion</a></li><li><a href="/flow-control/tail-calls">Tail calls</a></li><li><a href="/flow-control/list-recursion">List recursion</a></li><li><a href="/flow-control/multiple-subjects">Multiple subjects</a></li><li><a href="/flow-control/alternative-patterns">Alternative patterns</a></li><li><a href="/flow-control/pattern-aliases">Pattern aliases</a></li><li><a href="/flow-control/guards">Guards</a></li></ul>
+<h3 class="mb-0">Data types</h3><ul><li><a href="/data-types/tuples">Tuples</a></li><li><a href="/data-types/custom-types">Custom types</a></li><li><a href="/data-types/records">Records</a></li><li><a href="/data-types/record-accessors">Record accessors</a></li><li><a href="/data-types/record-updates">Record updates</a></li><li><a href="/data-types/nil">Nil</a></li><li><a href="/data-types/results">Results</a></li><li><a href="/data-types/bit-arrays">Bit arrays</a></li></ul>
+<h3 class="mb-0">Standard library</h3><ul><li><a href="/standard-library/standard-library-package">Standard library package</a></li><li><a href="/standard-library/list-module">List module</a></li><li><a href="/standard-library/result-module">Result module</a></li><li><a href="/standard-library/dict-module">Dict module</a></li><li><a href="/standard-library/option-module">Option module</a></li></ul>
+<h3 class="mb-0">Advanced features</h3><ul><li><a href="/advanced-features/use">Use</a></li><li><a href="/advanced-features/use-sugar">Use sugar</a></li><li><a href="/advanced-features/todo">Todo</a></li><li><a href="/advanced-features/panic">Panic</a></li><li><a href="/advanced-features/externals">Externals</a></li><li><a href="/advanced-features/multi-target-externals">Multi target externals</a></li><li><a href="/advanced-features/external-gleam-fallbacks">External gleam fallbacks</a></li></ul><h3 class="mb-0">Finally...</h3><ul><li><a href="/what-next/">What next? ✨</a></li></ul></aside><section id="left"><h2>Generic functions</h2><p>
+  Up until now each function has accepted precisely one type for each of its
+  arguments.
+</p>
+<p data-translate="ja">
+  これまで各関数は、引数に対して正確に 1 つの型を受け入れてきました。
+</p>
+<p>
+  The <code>twice</code> function for example only worked with functions that
+  would take and return ints. This is overly restrictive, it should be possible
+  to use this function with any type, so long as the function and the initial
+  value are compatible.
+</p>
+<p data-translate="ja">
+  例えば <code>twice</code> 関数は、Int 型を受け取って返す関数のみに対応していました。これは過度に限定的な関数になってしまっていますが、関数と初期値に互換性がある限り、どんな型でもこの関数を使うことができるようにしたいでしょう。
+</p>
+<p>
+  To enable this Gleam support <em>generics</em>, also known as
+  <em>parametric polymorphism</em>.
+</p>
+<p data-translate="ja">
+  これを可能にするために、Gleam は<em>ジェネリクス</em>（パラメトリック・ポリモーフィズムと呼ばれる）をサポートしています。
+</p>
+<p>
+  This works by instead of specifying a concrete type, a type variable is used
+  which stands in for whatever specific type is being used when the function is
+  called. These type variables are written with a lowercase name.
+</p>
+<p data-translate="ja">
+  これは、具体的な型を指定する代わりに、関数が呼び出されたときに使用される特定の型を表す型変数を使用します。型変数は小文字の名前で記述されます。
+</p>
+<p>
+  Type variables are not like an <code>any</code> type, they get replaced with a
+  specific type each time the function is called. Try uncommenting
+  <code>twice(10, exclaim)</code> to see the compiler error from trying to use a
+  type variable as an int and a string at the same time.
+</p>
+<p data-translate="ja">
+  型変数は <code>any</code> 型とは異なり、関数が呼び出される度に特定の型に置き換えられます。型変数を Int と String として同時に使おうとしたというコンパイルエラーを確認するために <code>twice(10, exclaim)</code> をアンコメントしてみましょう。
+</p>
+<nav class="prev-next"><a href="/functions/function-captures">Back</a> — <a href="/table-of-contents">Contents</a> — <a href="/functions/pipelines">Next</a></nav></section><section id="right"><section id="editor"><div id="editor-target"></div></section><aside id="output"></aside></section></article><script type="gleam" id="code">import gleam/io
+
+pub fn main() {
+  let add_one = fn(x) { x + 1 }
+  let exclaim = fn(x) { x <> "!" }
+
+  // Invalid, Int and String are not the same type
+  // twice(10, exclaim)
+
+  // Here the type variable is replaced by the type Int
+  io.debug(twice(10, add_one))
+
+  // Here the type variable is replaced by the type String
+  io.debug(twice("Hello", exclaim))
+}
+
+fn twice(argument: value, function: fn(value) -> value) -> value {
+  function(function(argument))
+}
+</script><script type="module" src="/index.js"></script><script src="/translate.js"></script></body></html>

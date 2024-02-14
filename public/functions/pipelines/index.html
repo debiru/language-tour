@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><title>Pipelines - The Gleam Language Tour</title><meta name="description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="og:type" content="website"></meta><meta property="og:title" content="Pipelines - The Gleam Language Tour"></meta><meta property="og:description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="og:url" content="https://tour.gleam.run//functions/pipelines"></meta><meta property="og:image" content="https://gleam.run/images/og-image.png"></meta><meta property="twitter:card" content="summary_large_image"></meta><meta property="twitter:url" content="https://tour.gleam.run//functions/pipelines"></meta><meta property="twitter:title" content="Pipelines - The Gleam Language Tour"></meta><meta property="twitter:description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="twitter:image" content="https://gleam.run/images/og-image.png"></meta><link rel="shortcut icon" href="https://gleam.run/images/lucy-circle.svg"></link><link rel="stylesheet" href="/style.css"></link><script defer="" data-domain="tour.gleam.run" src="https://plausible.io/js/script.js"></script></head><body><nav class="navbar"><a href="/">Gleam Language Tour</a></nav><article id="playground"><aside id="toc" hidden="hidden"><h2>Table of Contents</h2><h3 class="mb-0">Basics</h3><ul><li><a href="/basics/hello-world">Hello world</a></li><li><a href="/basics/unqualified-imports">Unqualified imports</a></li><li><a href="/basics/type-checking">Type checking</a></li><li><a href="/basics/ints">Ints</a></li><li><a href="/basics/floats">Floats</a></li><li><a href="/basics/number-formats">Number formats</a></li><li><a href="/basics/equality">Equality</a></li><li><a href="/basics/strings">Strings</a></li><li><a href="/basics/bools">Bools</a></li><li><a href="/basics/assignments">Assignments</a></li><li><a href="/basics/discard-patterns">Discard patterns</a></li><li><a href="/basics/type-annotations">Type annotations</a></li><li><a href="/basics/type-aliases">Type aliases</a></li><li><a href="/basics/blocks">Blocks</a></li><li><a href="/basics/lists">Lists</a></li><li><a href="/basics/constants">Constants</a></li></ul>
+<h3 class="mb-0">Functions</h3><ul><li><a href="/functions/functions">Functions</a></li><li><a href="/functions/higher-order-functions">Higher order functions</a></li><li><a href="/functions/anonymous-functions">Anonymous functions</a></li><li><a href="/functions/function-captures">Function captures</a></li><li><a href="/functions/generic-functions">Generic functions</a></li><li><a href="/functions/pipelines">Pipelines</a></li><li><a href="/functions/labelled-arguments">Labelled arguments</a></li><li><a href="/functions/documentation-comments">Documentation comments</a></li><li><a href="/functions/deprecations">Deprecations</a></li></ul>
+<h3 class="mb-0">Flow control</h3><ul><li><a href="/flow-control/case-expressions">Case expressions</a></li><li><a href="/flow-control/variable-patterns">Variable patterns</a></li><li><a href="/flow-control/string-patterns">String patterns</a></li><li><a href="/flow-control/list-patterns">List patterns</a></li><li><a href="/flow-control/recursion">Recursion</a></li><li><a href="/flow-control/tail-calls">Tail calls</a></li><li><a href="/flow-control/list-recursion">List recursion</a></li><li><a href="/flow-control/multiple-subjects">Multiple subjects</a></li><li><a href="/flow-control/alternative-patterns">Alternative patterns</a></li><li><a href="/flow-control/pattern-aliases">Pattern aliases</a></li><li><a href="/flow-control/guards">Guards</a></li></ul>
+<h3 class="mb-0">Data types</h3><ul><li><a href="/data-types/tuples">Tuples</a></li><li><a href="/data-types/custom-types">Custom types</a></li><li><a href="/data-types/records">Records</a></li><li><a href="/data-types/record-accessors">Record accessors</a></li><li><a href="/data-types/record-updates">Record updates</a></li><li><a href="/data-types/nil">Nil</a></li><li><a href="/data-types/results">Results</a></li><li><a href="/data-types/bit-arrays">Bit arrays</a></li></ul>
+<h3 class="mb-0">Standard library</h3><ul><li><a href="/standard-library/standard-library-package">Standard library package</a></li><li><a href="/standard-library/list-module">List module</a></li><li><a href="/standard-library/result-module">Result module</a></li><li><a href="/standard-library/dict-module">Dict module</a></li><li><a href="/standard-library/option-module">Option module</a></li></ul>
+<h3 class="mb-0">Advanced features</h3><ul><li><a href="/advanced-features/use">Use</a></li><li><a href="/advanced-features/use-sugar">Use sugar</a></li><li><a href="/advanced-features/todo">Todo</a></li><li><a href="/advanced-features/panic">Panic</a></li><li><a href="/advanced-features/externals">Externals</a></li><li><a href="/advanced-features/multi-target-externals">Multi target externals</a></li><li><a href="/advanced-features/external-gleam-fallbacks">External gleam fallbacks</a></li></ul><h3 class="mb-0">Finally...</h3><ul><li><a href="/what-next/">What next? ✨</a></li></ul></aside><section id="left"><h2>Pipelines</h2><p>
+  It's common to want to call a series of functions, passing the result of one
+  to the next. With the regular function call syntax this can be a little
+  difficult to read as you have to read the code from the inside out.
+</p>
+<p data-translate="ja">
+  一連の関数を呼び出して、その結果を次の関数に渡すというのはよくあることです。通常の関数呼び出し構文では、コードを内側から外側に読まなければならないので、少し読みにくいかもしれません。
+</p>
+<p>
+  Gleam's pipe operator <code>|></code> helps with this problem by allowing you
+  to write code top-to-bottom.
+</p>
+<p data-translate="ja">
+  Gleam のパイプ演算子 <code>|&gt;</code> は、コードを上から下へ記述できるようにすることで、この問題を解決します。
+</p>
+<p>
+  The pipe operator takes the result of the expression on its left and passes it
+  as an argument to the function on its right.
+</p>
+<p data-translate="ja">
+  パイプ演算子は、左項の式の結果を受け取り、右項の関数に引数として渡します。
+</p>
+<p>
+  It will first check to see if the left-hand value could be used as the first
+  argument to the call. For example, <code>a |> b(1, 2)</code> would become
+  <code>b(a, 1, 2)</code>. If not, it falls back to calling the result of the
+  right-hand side as a function, e.g., <code>b(1, 2)(a)</code>
+</p>
+<p data-translate="ja">
+  まず、左項の値が呼び出しの最初の引数として使えるかどうかをチェックします。例えば、<code>a |&gt; b(1, 2)</code> は <code>b(a, 1, 2)</code> となります。そうでない場合、右項の結果を関数として呼び出すようにフォールバックします。すなわち、<code>b(1, 2)(a)</code> ということです。
+</p>
+<p>
+  Gleam code is typically written with the "subject" of the function as the
+  first argument, to make it easier to pipe. If you wish to pipe to a different
+  position then a function capture can be used to insert the argument to the
+  desired position.
+</p>
+<p data-translate="ja">
+  Gleam のコードは通常、パイプ処理を簡単にするために、関数の「主語」を第一引数として記述します。異なる位置にパイプしたい場合は、関数キャプチャを使用して、引数を希望の位置に挿入することができます。
+</p>
+<nav class="prev-next"><a href="/functions/generic-functions">Back</a> — <a href="/table-of-contents">Contents</a> — <a href="/functions/labelled-arguments">Next</a></nav></section><section id="right"><section id="editor"><div id="editor-target"></div></section><aside id="output"></aside></section></article><script type="gleam" id="code">import gleam/io
+import gleam/string
+
+pub fn main() {
+  // Without the pipe operator
+  io.debug(string.drop_left(string.drop_right("Hello, Joe!", 1), 7))
+
+  // With the pipe operator
+  "Hello, Mike!"
+  |> string.drop_right(1)
+  |> string.drop_left(7)
+  |> io.debug
+
+  // Changing order with function capturing
+  "1"
+  |> string.append("2")
+  |> string.append("3", _)
+  |> io.debug
+}
+</script><script type="module" src="/index.js"></script><script src="/translate.js"></script></body></html>

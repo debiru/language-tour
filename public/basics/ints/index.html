@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><title>Ints - The Gleam Language Tour</title><meta name="description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="og:type" content="website"></meta><meta property="og:title" content="Ints - The Gleam Language Tour"></meta><meta property="og:description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="og:url" content="https://tour.gleam.run//basics/ints"></meta><meta property="og:image" content="https://gleam.run/images/og-image.png"></meta><meta property="twitter:card" content="summary_large_image"></meta><meta property="twitter:url" content="https://tour.gleam.run//basics/ints"></meta><meta property="twitter:title" content="Ints - The Gleam Language Tour"></meta><meta property="twitter:description" content="An interactive introduction and reference to the Gleam programming language. Learn Gleam in your browser!"></meta><meta property="twitter:image" content="https://gleam.run/images/og-image.png"></meta><link rel="shortcut icon" href="https://gleam.run/images/lucy-circle.svg"></link><link rel="stylesheet" href="/style.css"></link><script defer="" data-domain="tour.gleam.run" src="https://plausible.io/js/script.js"></script></head><body><nav class="navbar"><a href="/">Gleam Language Tour</a></nav><article id="playground"><aside id="toc" hidden="hidden"><h2>Table of Contents</h2><h3 class="mb-0">Basics</h3><ul><li><a href="/basics/hello-world">Hello world</a></li><li><a href="/basics/unqualified-imports">Unqualified imports</a></li><li><a href="/basics/type-checking">Type checking</a></li><li><a href="/basics/ints">Ints</a></li><li><a href="/basics/floats">Floats</a></li><li><a href="/basics/number-formats">Number formats</a></li><li><a href="/basics/equality">Equality</a></li><li><a href="/basics/strings">Strings</a></li><li><a href="/basics/bools">Bools</a></li><li><a href="/basics/assignments">Assignments</a></li><li><a href="/basics/discard-patterns">Discard patterns</a></li><li><a href="/basics/type-annotations">Type annotations</a></li><li><a href="/basics/type-aliases">Type aliases</a></li><li><a href="/basics/blocks">Blocks</a></li><li><a href="/basics/lists">Lists</a></li><li><a href="/basics/constants">Constants</a></li></ul>
+<h3 class="mb-0">Functions</h3><ul><li><a href="/functions/functions">Functions</a></li><li><a href="/functions/higher-order-functions">Higher order functions</a></li><li><a href="/functions/anonymous-functions">Anonymous functions</a></li><li><a href="/functions/function-captures">Function captures</a></li><li><a href="/functions/generic-functions">Generic functions</a></li><li><a href="/functions/pipelines">Pipelines</a></li><li><a href="/functions/labelled-arguments">Labelled arguments</a></li><li><a href="/functions/documentation-comments">Documentation comments</a></li><li><a href="/functions/deprecations">Deprecations</a></li></ul>
+<h3 class="mb-0">Flow control</h3><ul><li><a href="/flow-control/case-expressions">Case expressions</a></li><li><a href="/flow-control/variable-patterns">Variable patterns</a></li><li><a href="/flow-control/string-patterns">String patterns</a></li><li><a href="/flow-control/list-patterns">List patterns</a></li><li><a href="/flow-control/recursion">Recursion</a></li><li><a href="/flow-control/tail-calls">Tail calls</a></li><li><a href="/flow-control/list-recursion">List recursion</a></li><li><a href="/flow-control/multiple-subjects">Multiple subjects</a></li><li><a href="/flow-control/alternative-patterns">Alternative patterns</a></li><li><a href="/flow-control/pattern-aliases">Pattern aliases</a></li><li><a href="/flow-control/guards">Guards</a></li></ul>
+<h3 class="mb-0">Data types</h3><ul><li><a href="/data-types/tuples">Tuples</a></li><li><a href="/data-types/custom-types">Custom types</a></li><li><a href="/data-types/records">Records</a></li><li><a href="/data-types/record-accessors">Record accessors</a></li><li><a href="/data-types/record-updates">Record updates</a></li><li><a href="/data-types/nil">Nil</a></li><li><a href="/data-types/results">Results</a></li><li><a href="/data-types/bit-arrays">Bit arrays</a></li></ul>
+<h3 class="mb-0">Standard library</h3><ul><li><a href="/standard-library/standard-library-package">Standard library package</a></li><li><a href="/standard-library/list-module">List module</a></li><li><a href="/standard-library/result-module">Result module</a></li><li><a href="/standard-library/dict-module">Dict module</a></li><li><a href="/standard-library/option-module">Option module</a></li></ul>
+<h3 class="mb-0">Advanced features</h3><ul><li><a href="/advanced-features/use">Use</a></li><li><a href="/advanced-features/use-sugar">Use sugar</a></li><li><a href="/advanced-features/todo">Todo</a></li><li><a href="/advanced-features/panic">Panic</a></li><li><a href="/advanced-features/externals">Externals</a></li><li><a href="/advanced-features/multi-target-externals">Multi target externals</a></li><li><a href="/advanced-features/external-gleam-fallbacks">External gleam fallbacks</a></li></ul><h3 class="mb-0">Finally...</h3><ul><li><a href="/what-next/">What next? ✨</a></li></ul></aside><section id="left"><h2>Ints</h2><p>Gleam's <code>Int</code> type represents whole numbers.</p>
+<p data-translate="ja">
+  Gleam の <code>Int</code> 型は整数を表します。
+</p>
+<p>
+  There are arithmetic and comparison operators for ints, as well as the
+  equality operator which works on all types.
+</p>
+<p data-translate="ja">
+  整数型には算術演算子や比較演算子があり、すべての型で使える等価演算子もあります。
+</p>
+<p>
+  When running on the Erlang virtual machine ints have no maximum and minimum
+  size. When running on JavaScript runtimes ints are represented using
+  JavaScript's 64 bit floating point numbers,
+</p>
+<p data-translate="ja">
+  Erlang 仮想マシン上で動作する場合、整数型には最大と最小のサイズがありません。JavaScript ランタイムで実行する場合、整数は JavaScript の 64 ビット浮動小数点数で表現されます。
+</p>
+<p>
+  The
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/int.html"
+    ><code>gleam/int</code></a
+  >
+  standard library module contains functions for working with ints.
+</p>
+<p data-translate="ja">
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/int.html"><code>gleam/int</code></a> 標準ライブラリモジュールには整数を扱う関数が含まれています。
+</p>
+<nav class="prev-next"><a href="/basics/type-checking">Back</a> — <a href="/table-of-contents">Contents</a> — <a href="/basics/floats">Next</a></nav></section><section id="right"><section id="editor"><div id="editor-target"></div></section><aside id="output"></aside></section></article><script type="gleam" id="code">import gleam/io
+import gleam/int
+
+pub fn main() {
+  // Int arithmetic
+  io.debug(1 + 1)
+  io.debug(5 - 1)
+  io.debug(5 / 2)
+  io.debug(3 * 3)
+  io.debug(5 % 2)
+
+  // Int comparisons
+  io.debug(2 > 1)
+  io.debug(2 < 1)
+  io.debug(2 >= 1)
+  io.debug(2 <= 1)
+
+  // Equality works for any type
+  io.debug(1 == 1)
+  io.debug(2 == 1)
+
+  // Standard library int functions
+  io.debug(int.max(42, 77))
+  io.debug(int.clamp(5, 10, 20))
+}
+</script><script type="module" src="/index.js"></script><script src="/translate.js"></script></body></html>
