@@ -76,7 +76,7 @@ const home_html = "
   and we want to know about it so we can improve the tour.
 </p>
 <p data-translate=\"ja\">
-  もし行き詰まったり、質問がある場合は、遠慮なく <a href=\"https://discord.gg/Fm8Pwmy\">Gleam Discord サーバ</a> でお尋ねください。もし、あなたが分かりにくいと感じたことがあれば、他の人も同じように感じている可能性があります。このツアーをより良いものにするために、私たちはそれを知りたいのです。
+  もし行き詰まったり、質問がある場合は、遠慮なく <a href=\"https://discord.gg/Fm8Pwmy\">the Gleam Discord server</a> でお尋ねください。もし、あなたが分かりにくいと感じたことがあれば、他の人も同じように感じている可能性があります。このツアーをより良いものにするために、私たちはそれを知りたいのです。
 </p>
 <p>
   OK, let's go. Click \"Next\" to get started, or click \"Contents\" to jump to a
@@ -91,21 +91,35 @@ const what_next_html = "
 <p>
   Congratulations on completing the tour! Here's some ideas for what to do next:
 </p>
-
+<p data-translate=\"ja\">
+  ツアー完走おめでとう！次に何をすべきか、いくつか考えてみましょう。
+</p>
 <p>
   Read the <a href=\"https://gleam.run/getting-started/\">Gleam getting started
   documentation</a> to learn more about the language and its tooling.
 </p>
+<p data-translate=\"ja\">
+  <a href=\"https://gleam.run/getting-started/\">Gleam getting started documentation</a> を読んで、言語とツールについてもっと学びましょう。
+</p>
 <p>
   Join the <a href=\"https://discord.gg/Fm8Pwmy\">the Gleam Discord server</a>
   and meet the community. They're friendly and helpful!
+</p>
+<p data-translate=\"ja\">
+  <a href=\"https://discord.gg/Fm8Pwmy\">the Gleam Discord server</a> に参加して、コミュニティに会いましょう。彼らはフレンドリーで親切です！
 </p>
 <p>
   Enroll in the <a href=\"https://exercism.io/tracks/gleam\">Exercism
   Gleam track</a> to practice your Gleam skills through a series of exercises
   and optionally get feedback from experienced Gleam developers.
 </p>
+<p data-translate=\"ja\">
+  <a href=\"https://exercism.io/tracks/gleam\">Exercism Gleam track</a> に登録し、Gleam のスキルを練習し、経験豊富な Gleam 開発者からフィードバックを貰いましょう。
+</p>
 <p>
+  Happy hacking!
+</p>
+<p data-translate=\"ja\">
   Happy hacking!
 </p>
 "
@@ -576,6 +590,12 @@ fn lesson_html(page: Lesson) -> String {
           htmb.dangerous_unescaped_fragment(string_builder.from_string(
             string.join(list.map(result.unwrap(load_content(), []), contents_list_html), "\n"),
           )),
+          h("h3", [#("class", "mb-0")], [text("Finally...")]),
+          h("ul", [], [
+            h("li", [], [
+              h("a", [#("href", "/what-next/")], [text("What next? ✨")])
+            ])
+          ]),
         ]),
         h("section", [#("id", "left")], [
           h("h2", [], [text(page.name)]),

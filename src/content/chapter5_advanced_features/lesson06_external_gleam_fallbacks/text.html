@@ -4,10 +4,16 @@
   currently compiled-for target then it will be used, otherwise the Gleam
   implementation is used.
 </p>
+<p data-translate="ja">
+  関数が Gleam 実装と外部実装の両方を持つことは可能です。現在コンパイルされているターゲットに外部実装が存在する場合はそれが使用され、そうでない場合は Gleam 実装が使用されます。
+</p>
 <p>
   This may be useful if you have a function that can be implemented in Gleam,
   but there is an optimised implementation that can be used for one target. For
   example, the Erlang virtual machine has a built-in list reverse function that
   is implemented in native code. The code here uses this implementation when
   running on Erlang, as it is then available.
+</p>
+<p data-translate="ja">
+  これは Gleam で実装できる関数があり、あるターゲットに最適化された実装がある場合に便利です。例えば、Erlang 仮想マシンにはネイティブコードで実装された組み込みのリスト反転関数があります。このコードは Erlang 上で実行するときにこの実装を使います。
 </p>

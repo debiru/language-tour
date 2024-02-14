@@ -4,14 +4,23 @@
   Gleam's <em>external functions</em> and <em>external types</em> allow us to
   import and use this non-Gleam code.
 </p>
+<p data-translate="ja">
+  私たちのプロジェクトでは、他の言語で書かれたコードを使いたいことがたまにあります。ランタイムによっては、Erlang や JavaScript がよく使われます。Gleam の外部関数と外部型を使えば、Gleam 以外のコードをインポートして使うことができます。
+</p>
 <p>
   An external type is one that has no constructors. Gleam doesn't know what
   shape it has or how to create one, it only knows that it exists.
+</p>
+<p data-translate="ja">
+  外部型とは、コンストラクタを持たない型のことです。Gleam はその型がどのような形をしているのか、どのように作成するのかを知りません。
 </p>
 <p>
   An external function is one that has the <code>@external</code> attribute on
   it, directing the compiler to use the specified module function as the
   implementation, instead of Gleam code.
+</p>
+<p data-translate="ja">
+  外部関数とは、<code>@external</code> 属性を持つ関数のことで、Gleam コードではなく、指定されたモジュール関数を実装として使用するようにコンパイラに指示します。
 </p>
 <p>
   The compiler can't tell the types of functions written in other languages, so
@@ -19,7 +28,13 @@
   trusts that the type given is correct so an inaccurate type annotation can
   result in unexpected behaviour and crashes at runtime. Be careful!
 </p>
+<p data-translate="ja">
+  コンパイラは他の言語で書かれた関数の型を知ることができないため、external 属性が指定された場合は型アノテーションを提供しなければなりません。Gleam は指定された型が正しいと信じているので、不正確な型アノテーションは予期しない動作や実行時のクラッシュに繋がります。注意してください！
+</p>
 <p>
   External functions are useful but should be used sparingly. Prefer to write
   Gleam code where possible.
+</p>
+<p data-translate="ja">
+  外部関数は便利ですが、使用は控えめにしてください。可能な限り Gleam のコードを書くようにしてください。
 </p>

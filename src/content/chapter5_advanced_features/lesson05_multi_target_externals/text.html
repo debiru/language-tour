@@ -2,9 +2,15 @@
   Multiple external implementations can be specified for the same function,
   enabling the function to work on both Erlang and JavaScript.
 </p>
+<p data-translate="ja">
+  同じ関数に複数の外部実装を指定することができ、その関数は Erlang と JavaScript の療法で動作します。
+</p>
 <p>
   If a function doesn't have an implementation for the currently compiled-for
   target then the compiler will return an error.
+</p>
+<p data-translate="ja">
+  もし関数が現在コンパイルしているターゲットに実装されていない場合、コンパイラはエラーを返します。
 </p>
 <p>
   You should try to implement functions for all targets, but this isn't always
@@ -16,7 +22,13 @@
   most Gleam and Erlang code as it forces any code that calls the function to
   also use callbacks.
 </p>
+<p data-translate="ja">
+  全てのターゲットに対して関数を実装するように努力すべきですが、Erlang と JavaScript の IO や並列処理の動作は互換性がないため、いつもできるわけではありません。Erlang の並列 IO はランタイムによって透過的に処理されますが、JavaScript の並列 IO はプロミスやコールバックを使う必要があります。もしあなたのコードが Erlang スタイルを使っている場合、JavaScript で実装することは通常不可能です。もしコールバックが使われている場合、関数を呼び出すコードもコールバックを使わざるを得ないので、ほとんどの Gleam や Erlang のコードとは互換性がありません。
+</p>
 <p>
   Libraries that make use of concurrent IO will typically have to decide whether
   they support Erlang or JavaScript, and document this in their README.
+</p>
+<p data-translate="ja">
+  並列 IO を使うライブラリは通常、Erlang と JavaScript のどちらをサポートするのかを決めなければなりません。
 </p>

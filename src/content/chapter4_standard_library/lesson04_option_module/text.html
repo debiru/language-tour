@@ -6,11 +6,16 @@
   standard library module defines Gleam's <code>Option</code> type, which can be
   used to represent a value that is either present or absent.
 </p>
-
+<p data-translate="ja">
+  Gleam では値は nullable ではありません。そのため <a href="https://hexdocs.pm/gleam_stdlib/gleam/option.html"><code>gleam/option</code></a> 標準ライブラリモジュールは Gleam の <code>Option</code> 型を定義しています。
+</p>
 <p>
   The option type is very similar to the result type, but it does not have an
   error value. Some languages have functions return an option when there is no
   extra error detail to give, but Gleam always uses result. This makes all
   fallible functions consistent and removes any boilerplate that would be
   required when mixing functions that use each type.
+</p>
+<p data-translate="ja">
+  <code>Option</code> 型は <code>Result</code> 型とよく似ていますが、エラー値を持ちません。いくつかの言語では、エラーの詳細がない場合、関数はオプションを返しますが、Gleam では常に <code>Result</code> を使用します。これにより、失敗しうる全ての関数に一貫性を持たせることができ、それぞれの型を使用する関数を混在させる際に必要となる定型文を取り除くことができます。
 </p>

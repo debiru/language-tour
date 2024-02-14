@@ -7,7 +7,9 @@
   for working with it. A dict is a collection of keys and values which other
   languages may call a hashmap or table.
 </p>
-
+<p data-translate="ja">
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html"><code>gleam/dict</code></a> 標準ライブラリモジュールは、Gleam の <code>Dict</code> 型とそれを扱う関数を定義しています。辞書（dict）はキーと値のコレクションで、他の言語ではハッシュマップやテーブルと呼ばれることもあります。
+</p>
 <p>
   <a href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#new"
     ><code>new</code></a
@@ -18,7 +20,9 @@
   >
   can be used to create new dicts.
 </p>
-
+<p data-translate="ja">
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#new"><code>new</code></a> と <a href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#from_list"><code>from_list</code></a> は、新しい辞書を作成するために使われます。
+</p>
 <p>
   <a href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#insert"
     ><code>insert</code></a
@@ -29,12 +33,24 @@
   >
   are used to add and remove items from a dict.
 </p>
+<p data-translate="ja">
+  <a href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#insert"><code>insert</code></a> と <a href="https://hexdocs.pm/gleam_stdlib/gleam/dict.html#delete"><code>delete</code></a> は、辞書に項目を追加したり削除したりするために使われます。
+</p>
 <p>
   Like lists, dicts are immutable. Inserting or deleting an item from a dict
   will return a new dict with the item added or removed.
+</p>
+<p data-translate="ja">
+  リストと同様に辞書は不変（イミュータブル）です。dict にアイテムを挿入したり削除したりすると、その項目が追加または削除された新しい辞書が返されます。
 </p>
 <p>
   Dicts are unordered! If it appears that the items in a dict are in a certain
   order this is incidental and should not be relied upon. Any ordering may
   change without warning in future versions or on different runtimes.
 </p>
+<p data-translate="ja">
+  辞書は順序付けられていません！辞書のアイテムがある順序で並んでいる様に見えても、それは偶発的なものであり、その順序に依存してはいけません。将来のバージョンや異なるランタイムでは、警告なしに異なる順序でアイテムが参照される可能性があります。
+</p>
+<div data-note="info">
+  <p data-translate="ja">辞書のキーには文字列以外も指定できますが、リストと同様に辞書のアイテムは全てが同じ型のキーと値である必要があります。</p>
+</div>

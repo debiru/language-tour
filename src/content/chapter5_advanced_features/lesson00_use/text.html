@@ -4,28 +4,45 @@
   pattern matching. This makes Gleam code easier to understand, but it can
   sometimes result in excessive indentation.
 </p>
+<p data-translate="ja">
+  Gleam には、例外、マクロ、型クラス、早期リターン、その他様々な機能がなく、代わりにファーストクラス関数とパターンマッチングに徹しています。そのため、Gleam のコードは理解しやすいですが、インデントが多くなりすぎることがあります。
+</p>
 <p>
   Gleam's use expression helps out here by enabling us to write code that uses
   callbacks in an unindented style, as shown in the code window.
 </p>
-
+<p data-translate="ja">
+  Gleam の use 式は、コードウィンドウで示しているように、インデントされていないスタイルでコールバックを使用するコードを書くことを可能にしてくれます。
+</p>
 <p>
   The higher order function being called goes on the right hand side of the
   <code>&lt;-</code> operator. It must take a callback function as its final
   argument.
+</p>
+<p data-translate="ja">
+  呼び出される高階関数は、<code>&lt;-</code> 演算子の右項に置かれます。最後の引数としてコールバック関数を渡さなければなりません。
 </p>
 <p>
   The argument names for the callback function go on the left hand side of the
   <code>&lt;-</code> operator. The function can take any number of arguments,
   including zero.
 </p>
+<p data-translate="ja">
+  コールバック関数の引数名は <code>&lt;-</code> 演算子の左項に置かれます。関数はゼロを含む任意の個数の引数を取ることができます。
+</p>
 <p>
   All the following code in the <code class="hljs">{}</code> block becomes the
   body of the callback function.
+</p>
+<p data-translate="ja">
+  <code class="hljs">{}</code> ブロック内に続くコードは全てコールバック関数の本文になります。
 </p>
 <p>
   This is a very capable and useful feature, but excessive application of
   <code>use</code> may result in code that is unclear otherwise, especially to
   beginners. Often using the regular function call syntax will result in more
   approachable code!
+</p>
+<p data-translate="ja">
+  これは非常に有能で便利な機能ですが、過度な <code>use</code> の適用は、特に初心者にとっては不明瞭なコードになる可能性があります。多くの場合、関数呼び出し構文を使用した方が、より親しみやすいコードになります！
 </p>
