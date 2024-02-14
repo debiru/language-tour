@@ -7,6 +7,7 @@
     html: document.documentElement,
     head: document.head,
     styleId: 0,
+    setCodeByQuery: false,
   };
   window.NS = NS;
 
@@ -94,7 +95,7 @@
         elem.setAttribute('target', '_blank');
       }
     },
-    setCode() {
+    saveCode() {
       const ID = Sub.generateStorageKey('save-code');
       const saveButton = Util.createElement('button', {type: 'button', id: ID}, 'Save Code');
       NS.customControls.append(saveButton);
@@ -105,18 +106,24 @@
       });
 
       const codeQuery = NS.url.searchParams.get('code');
-      if (codeQuery != null) Sub.setCode(Util.base64.decode(codeQuery));
+      if (codeQuery != null) {
+        NS.setCodeByQuery = true;
+        Sub.setCode(Util.base64.decode(codeQuery));
+      }
     },
     autoSaveCode() {
       if (!NS.isTocPage) return;
 
       const STORAGE_KEY = Sub.generateStorageKey('code');
       Util.addEvent(NS.code, 'input', () => {
+        if (NS.setCodeByQuery) return;
         Util.storage.set(STORAGE_KEY, NS.code.value);
       });
 
-      const code = Util.storage.get(STORAGE_KEY);
-      if (code != null) Sub.setCode(code);
+      if (!NS.setCodeByQuery) {
+        const code = Util.storage.get(STORAGE_KEY);
+        if (code != null) Sub.setCode(code);
+      }
     },
   };
 
