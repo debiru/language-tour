@@ -12,6 +12,7 @@
 
   const Main = {
     setNS() {
+      NS.isTocPage = /^\/table-of-contents\//.test(NS.path);
       NS.toc = document.getElementById('toc');
       NS.navbar = document.querySelector('.navbar');
       NS.code = document.querySelector('#editor-target textarea');
@@ -26,7 +27,7 @@
       ]);
     },
     tocAlways() {
-      if (/^\/table-of-contents\//.test(NS.path)) return;
+      if (NS.isTocPage) return;
       NS.toc.removeAttribute('hidden');
       Sub.addStyle([
         '#toc { overflow: auto; padding: var(--gap); border-bottom: 2px solid var(--color-pink); }',
@@ -39,7 +40,7 @@
       ]);
     },
     tocScrollPos() {
-      const STORAGE_KEY = 'translate__toc-scroll';
+      const STORAGE_KEY = Sub.generateStorageKey('toc-scroll');
       const pos = Util.storage.get(STORAGE_KEY);
       if (pos > 0) NS.toc.scrollTo({top: pos});
       Util.addEvent(NS.toc, 'scrollend', () => {
@@ -64,7 +65,7 @@
     },
     originalTextSwitcher() {
       const HTML_ATTR = 'data-show-original-text';
-      const STORAGE_KEY = 'translate__show-original-text';
+      const STORAGE_KEY = Sub.generateStorageKey('show-original-text');
       const switcherButton = Util.createElement('button', {type: 'button', id: STORAGE_KEY}, '原語を表示する');
       NS.customControls.append(switcherButton);
 
@@ -94,7 +95,8 @@
       }
     },
     setCode() {
-      const saveButton = Util.createElement('button', {type: 'button', id: 'translate__save-code'}, 'Save Code');
+      const ID = Sub.generateStorageKey('save-code');
+      const saveButton = Util.createElement('button', {type: 'button', id: ID}, 'Save Code');
       NS.customControls.append(saveButton);
 
       Util.addEvent(saveButton, 'click', () => {
@@ -103,10 +105,18 @@
       });
 
       const codeQuery = NS.url.searchParams.get('code');
-      if (codeQuery != null) {
-        NS.code.value = Util.base64.decode(codeQuery);
-        Util.triggerEvent(NS.code, 'input');
-      }
+      if (codeQuery != null) Sub.setCode(Util.base64.decode(codeQuery));
+    },
+    autoSaveCode() {
+      if (!NS.isTocPage) return;
+
+      const STORAGE_KEY = Sub.generateStorageKey('code');
+      Util.addEvent(NS.code, 'input', () => {
+        Util.storage.set(STORAGE_KEY, NS.code.value);
+      });
+
+      const code = Util.storage.get(STORAGE_KEY);
+      if (code != null) Sub.setCode(code);
     },
   };
 
@@ -124,6 +134,13 @@
     toggleAttribute(elem, attr) {
       const value = Sub.getLogicalAttribute(elem, attr);
       elem.setAttribute(attr, String(!value));
+    },
+    generateStorageKey(key) {
+      return Util.sprintf('translate__%s', key);
+    },
+    setCode(code) {
+      NS.code.value = code;
+      Util.triggerEvent(NS.code, 'input');
     },
   };
 
