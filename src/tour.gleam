@@ -50,6 +50,7 @@ const erlang_the_movie = [
 const home_html = "
 <div data-note=\"info\">
   <p data-translate=\"ja\">このページは <a href=\"https://tour.gleam.run/\">https://tour.gleam.run/</a> を <a href=\"https://twitter.com/debiru_R\">@debiru_R</a> が日本語翻訳したものです。<code>gleam.lavoscore.org</code> は @debiru_R が管理しているドメイン名です。</p>
+  <p data-translate=\"ja\">翻訳版の公開に関して <a href=\"https://discord.com/channels/768594524158427167/1207222173652095056\">Gleam コミュニティで許可を得た</a>ので公開することにします。</p>
 </div>
 <p>
   This tour covers all aspects of the Gleam language, and assuming you have some
