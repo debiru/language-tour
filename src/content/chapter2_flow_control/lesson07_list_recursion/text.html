@@ -6,6 +6,9 @@
   module are used to iterate across a list, but at times you may prefer to work
   with the list directly.
 </p>
+<p data-translate="ja">
+  ほとんどの場合、<a href="https://hexdocs.pm/gleam_stdlib/gleam/list.html"><code>gleam/list</code></a> モジュールの関数はリストを反復処理するために使われますが、リストを直接操作したい場合もあるでしょう。
+</p>
 <p>
   The <code>[first, ..rest]</code> pattern matches on a list with at least one
   element, assigning the first element to the variable <code>first</code> and
@@ -13,7 +16,13 @@
   and a pattern for the empty list <code>[]</code> a function can run code on
   each element of a list until the end is reached.
 </p>
+<p data-translate="ja">
+  <code>[first, ..rest]</code> パターンは、少なくとも 1 つの要素を持つリストにマッチし、最初の要素を変数 <code>first</code> に、残りのリストを変数 <code>rest</code> に代入します。このパターンと空のリスト <code>[]</code> のパターンを使うことで、関数はリストの各要素に対して、最後に達するまでコードを実行することができます。
+</p>
 <p>
   This code sums a list by recursing over the list and adding each int to a
   <code>total</code> argument, returning it when the end is reached.
+</p>
+<p data-translate="ja">
+  このコードでは、リストを再帰して各整数を合計引数に加え、最後に達したときにそれを返すことで、リストを合計しています。
 </p>

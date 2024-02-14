@@ -1,15 +1,24 @@
 <p>
   Lists and the values they contain can be pattern matched on in case
   expressions.
-</p> 
+</p>
+<p data-translate="ja">
+  リストとそれに含まれる値は、case 式でパターンマッチさせることができます。
+</p>
 <p>
   List patterns match on specific lengths of lists. The pattern <code>[]</code>
   matches an empty list, and the pattern <code>[_]</code> matches a list with
   one element. They will not match on lists with other lengths.
+</p>
+<p data-translate="ja">
+  リストパターンは、特定の長さのリストにマッチします。パターン <code>[]</code> は空のリストにマッチし、パターン <code>[_]</code> は要素が 1 つのリストにマッチします。これらは他の長さのリストにはマッチしません。
 </p>
 <p>
   The spread pattern <code>..</code> can be used to match the rest of the list.
   The pattern <code>[1, ..]</code> matches any list that starts with
   <code>1</code>. The pattern <code>[_, _, ..]</code> matches any list that has
   at least two elements.
+</p>
+<p data-translate="ja">
+  スプレッドパターン <code>..</code> はリストの残りの部分にマッチします。パターン <code>[1, ..]</code> は <code>1</code> から始まるリストにマッチし、パターン <code>[_, _, ..]</code> は少なくとも 2 つの要素を持つリストにマッチします。
 </p>

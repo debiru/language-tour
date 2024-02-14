@@ -1,7 +1,16 @@
 <p>
   The <code>as</code> operator can be used to assign sub patterns to variables.
 </p>
+<p data-translate="ja">
+  <code>as</code> 演算子を使うと、サブパターンを変数に代入することができます。
+</p>
 <p>
   The pattern <code>[_, ..] as it</code> will match any non-empty list and
   assign that list to the variable <code>it</code>.
 </p>
+<p data-translate="ja">
+  パターン <code>[_, ..] as it</code> は、空でないリストにマッチし、そのリストを変数 <code>it</code> に代入します。
+</p>
+<div data-note="info">
+  <p data-translate="ja">パターン <code>[[_, ..] as first, ..]</code> は、<code>lists</code> の最初の要素が <code>[_, ..] as first</code> にマッチするか、つまり最初の要素が空でないリストかどうか、をチェックしています。</p>
+</div>

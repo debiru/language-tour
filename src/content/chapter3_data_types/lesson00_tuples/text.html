@@ -3,18 +3,30 @@
   want to combine multiple values of different types. In this case tuples are a
   quick and convenient option.
 </p>
+<p data-translate="ja">
+  リストは 1 つの型のコレクションが欲しい場合には適していますが、異なる型の複数の値を組み合わせたい場合もあります。このような場合、タプルが手っ取り早く便利な選択肢となります。
+</p>
 <p>
   The tuple access syntax can be used to get elements from a tuple without
   pattern matching. <code>some_tuple.0</code> gets the first element,
   <code>some_tuple.1</code> gets the second element, etc.
+</p>
+<p data-translate="ja">
+  タプルのアクセス構文を使用すると、パターンマッチなしでタプルから要素を取り出すことができます。<code>some_tuple.0</code> は最初の要素を取得し、<code>some_tuple.1</code> は 2 番目の要素を取得するといった具合です。
 </p>
 <p>
   Tuples are generic types, they have type parameters for the types they
   contain. <code>#(1, "Hi!")</code> has the type <code>#(Int, String)</code>,
   and <code>#(1.4, 10, 48)</code> has the type <code>#(Float, Int, Int)</code>.
 </p>
+<p data-translate="ja">
+  タプルは一般的な型であり、タプルに含まれる型の型パラメータを持ちます。<code>#(1, "Hi!")</code> は <code>#(Int, String)</code> 型となり、<code>#(1.4, 10, 48)</code> は <code>#(Float, Int, Int)</code> 型となります。
+</p>
 <p>
   Tuples are most commonly used to return 2 or 3 values from a function. Other
   times it is often is clearer to use a <em>custom type</em>, which we will
   cover next.
+</p>
+<p data-translate="ja">
+  タプルは、関数から 2, 3 個の値を返すときによく使われます。また、ある時は<em>カスタムタイプ</em>を使用するほうが明確になる場合がしばしばあります。
 </p>

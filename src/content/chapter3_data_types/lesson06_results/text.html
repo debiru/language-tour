@@ -3,13 +3,22 @@
   fail return a value of the built-in <code>Result(value, error)</code> type. It
   has two variants:
 </p>
+<p data-translate="ja">
+  Gleam は例外を使用しません。その代わり、成功するか失敗するかのどちらかである計算は、組み込みの <code>Result(value, error)</code> 型の値を返します。これには 2 つの型があります。
+</p>
 <ul>
   <li>
     <code>Ok</code>, which contains the return value of a successful
     computation.
   </li>
+  <li data-translate="ja">
+    <code>Ok</code>：成功した計算の返値。
+  </li>
   <li>
     <code>Error</code>, which contains the reason for a failed computation.
+  </li>
+  <li data-translate="ja">
+    <code>Error</code>：失敗した計算の理由を含む。
   </li>
 </ul>
 <p>
@@ -17,15 +26,24 @@
   one for the error. With these the result can hold any type for success and
   failure.
 </p>
+<p data-translate="ja">
+  この型は 2 つの型パラメータを持つ汎用的なもので、1 つは成功値用、もう 1 つはエラー用です。この 2 つの型パラメータで、成功時と失敗時の結果を保持することができます。
+</p>
 <p>
   Commonly Gleam programs and library will define custom types with a variant
   for each possible problem that can arise, along with any error information
   that would be useful to the programmer.
 </p>
+<p data-translate="ja">
+  一般的な Gleam プログラムやライブラリは、プログラマにとって有用なエラー情報とともに、起こりうる問題ごとにバリアントを持つカスタムタイプを定義します。
+</p>
 <p>
   This is advantageous over exceptions as you can immediately see what if any
   errors a function can return, and the compiler will ensure they are handled.
   No nasty surprises with unexpected exceptions!
+</p>
+<p data-translate="ja">
+  これは、関数が返す可能性のあるエラーを即座に確認でき、コンパイラがそのエラーを確実に処理するため、例外処理よりも有利です。予期せぬ例外に驚かされることもありません！
 </p>
 <p>
   A result value can be handled by pattern matching with a
@@ -34,4 +52,7 @@
   <code>gleam/result</code> standard library module and
   <code>use</code> expressions when working with results, both of which will be
   covered in later chapters.
+</p>
+<p data-translate="ja">
+  結果値は、<code>case</code> 式によるパターンマッチングで扱うこともできますが、結果が返される頻度を考えると扱いにくくなります。Gleam のコードでは、結果を扱う際に <code>gleam/result</code> 標準ライブラリモジュールと <code>use</code> 式を使うのが一般的です。
 </p>

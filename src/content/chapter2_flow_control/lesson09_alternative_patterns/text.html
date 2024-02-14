@@ -2,11 +2,20 @@
   Alternative patterns can be given for a case clause using the
   <code>|</code> operator. If any of the patterns match then the clause matches.
 </p>
+<p data-translate="ja">
+  case 句には <code>|</code> 演算子を使って別のパターンを指定することができます。いずれかのパターンがマッチすれば、その節はマッチします。
+</p>
 <p>
   If a pattern defines a variable then all of the alternative patterns for that
   clause must also define a variable with the same name and same type.
 </p>
+<p data-translate="ja">
+  あるパターンが変数を定義している場合、その節のすべての代替パターンも同じ名前で同じ型の変数を定義している必要があります。
+</p>
 <p>
   Currently it is not possible to have nested alternative patterns, so the
   pattern <code>[1 | 2 | 3]</code> is not valid.
+</p>
+<p data-translate="ja">
+  現在のところ、代替パターンを入れ子にすることはできないので、パターン <code>[1 | 2 | 3]</code> は無効です。
 </p>

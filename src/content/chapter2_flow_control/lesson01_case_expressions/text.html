@@ -3,16 +3,28 @@
   is similar to <code>switch</code> in some other languages, but more powerful
   than most.
 </p>
+<p data-translate="ja">
+  case 式は Gleam のコードで最も一般的なフロー制御です。他の言語における <code>switch</code> に似ていますが、それらよりも強力です。
+</p>
 <p>
   It allows the programmer to say "if the data has this shape then run this
   code", a process called <em>pattern matching</em>.
+</p>
+<p data-translate="ja">
+  これは、プログラマが「もしデータがこの形をしていたら、このコードを実行する」ということを可能にするもので、その処理は<em>パターン・マッチング</em>と呼ばれます。
 </p>
 <p>
   Gleam performs <em>exhaustiveness checking</em> to ensure that the patterns in
   a case expression cover all possible values. With this you can have confidence
   that your logic is up-to-date for the design of the data you are working with.
 </p>
+<p data-translate="ja">
+  Gleam は、case 式のパターンが全ての可能な値をカバーしていることを確認するために、<em>網羅性チェック</em>を実行します。これにより、あなたのロジックが、扱うデータの設計に対して最新であるという確信を持つことができます。
+</p>
 <p>
   Try commenting out patterns or adding new redundant ones, and see what
   problems the compiler reports.
+</p>
+<p data-translate="ja">
+  パターンをコメントアウトしたり、冗長なパターンを追加したりして、コンパイラがどのような問題を報告するか試してみてください。
 </p>

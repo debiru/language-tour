@@ -27,6 +27,14 @@
         '}',
       ]);
     },
+    tocScrollPos() {
+      const STORAGE_KEY = 'translate__toc-scroll';
+      const pos = Util.storage.get(STORAGE_KEY);
+      if (pos > 0) NS.toc.scrollTo({top: pos});
+      Util.addEvent(NS.toc, 'scrollend', () => {
+        Util.storage.set(STORAGE_KEY, NS.toc.scrollTop);
+      });
+    },
     translateElements() {
       const elems = document.querySelectorAll('[data-translate]');
       for (const elem of elems) {
@@ -35,7 +43,7 @@
       }
 
       Sub.addStyle([
-        'div[data-note] { padding: 10px; border-width: 1px; border-style: solid; border-radius: 6px; }',
+        'div[data-note] { margin-block: 16px; padding: 10px; border-width: 1px; border-style: solid; border-radius: 6px; }',
         'div[data-note]::before { float: left; margin: -10px 10px 0 -10px; padding: 1px 8px; border-width: 0 1px 1px 0; border-style: solid; border-radius: 0 0 6px 0; }',
         'div[data-note] > :first-child { margin-top: 0; }',
         'div[data-note] > :last-child { margin-bottom: 0; }',
@@ -56,14 +64,15 @@
         Sub.toggleAttribute(NS.html, HTML_ATTR);
         const value = Sub.getLogicalAttribute(NS.html, HTML_ATTR);
         switcherButton.textContent = value ? '原語を表示しない' : '原語を表示する';
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+        Util.storage.set(STORAGE_KEY, value);
       });
-      const storageValue = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      const storageValue = Util.storage.get(STORAGE_KEY);
       if (storageValue) Util.triggerEvent(switcherButton, 'click');
 
       Sub.addStyle([
         'html[data-show-original-text="false"] #left > p:has(+ p[data-translate]) { display: none; }',
         'html[data-show-original-text="true"] #left > p:has(+ p[data-translate]) { padding-left: 8px; border-left: 4px solid #999; }',
+        'html[data-show-original-text="false"] #left > :is(ul, ol) > li:has(+ li[data-translate]) { display: none; }',
         'button { cursor: pointer; }',
       ]);
     },
@@ -83,6 +92,7 @@
       if (Array.isArray(cssText)) cssText = cssText.join('\n');
       style.textContent = cssText;
       NS.head.append(style);
+      return style;
     },
     getLogicalAttribute(elem, attr) {
       return elem.getAttribute(attr).toLowerCase() === 'true';
@@ -101,6 +111,10 @@
           if (retval != null) return retval;
         }
       }
+    },
+    storage: {
+      get(key) { return JSON.parse(localStorage.getItem(key)); },
+      set(key, value) { localStorage.setItem(key, JSON.stringify(value)); },
     },
     empty(arg) {
       let isEmpty = arg == null || arg === false || arg === '';

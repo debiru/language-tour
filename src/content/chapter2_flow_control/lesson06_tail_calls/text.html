@@ -4,20 +4,31 @@
   created during recursion then the program would use a large amount of memory,
   or even crash the program if some limit is hit.
 </p>
+<p data-translate="ja">
+  関数が呼び出されると、その関数の引数とローカル変数を格納するための新しいスタックフレームがメモリ上に作成されます。再帰中にこれらのフレームが大量に作成されると、プログラムは大量のメモリを使用することになり、何らかの制限にぶつかるとプログラムがクラッシュすることもあります。
+</p>
 <p>
   To avoid this problem Gleam supports <em>tail call optimisation</em>, which
   allows the compiler to reuse the stack frame for the current function if a
   function call is the last thing the function does, removing the memory cost.
 </p>
-
+<p data-translate="ja">
+  この問題を回避するために、Gleam は<em>末尾再帰最適化</em>をサポートしており、関数呼び出しが関数の最後の処理である場合、コンパイラは現在の関数スタックフレームを再利用し、メモリコストを除去することができます。
+</p>
 <p>
   Unoptimised recursive functions can often be rewritten into tail call
   optimised functions by using an accumulator. An accumulator is a variable that
   is passed along in addition to the data, similar to a mutable variable in a
   language with <code>while</code> loops.
 </p>
+<p data-translate="ja">
+  最適化されていない再帰関数は、アキュムレーターを使用することで、しばしば末尾再帰最適化関数に書き換えることができます。アキュムレーターとは、データに加えて渡される変数のことで、<code>while</code> ループを持つ言語におけるミュータブル変数に似ています。
+</p>
 <p>
   Accumulators should be hidden away from the users of your code, they are
   internal implementation details. To do this write a public function that calls
   a recursive private function with the initial accumulator value.
+</p>
+<p data-translate="ja">
+  アキュムレーターは、コードの利用者からは見えないようにする必要があります。アキュムレーターは内部実装の詳細であるためです。これを行うには、アキュムレーターの初期値で再帰的なプライベート関数を呼び出すパブリック関数を記述します。
 </p>

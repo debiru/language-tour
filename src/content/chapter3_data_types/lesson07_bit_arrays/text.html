@@ -2,9 +2,15 @@
   Bit arrays represent a sequence of 1s and 0s, and are a convenient syntax for
   constructing and manipulating binary data.
 </p>
+<p data-translate="ja">
+  ビット配列は 1 と 0 の並びを表すもので、バイナリデータの構築や操作に便利な構文です。
+</p>
 <p>
   Each segment of a bit array can be given options to specify the representation
   used for that segment.
+</p>
+<p data-translate="ja">
+  ビット配列の各セグメントには、そのセグメントで使われる表現を指定するオプションを与えることができます。
 </p>
 <ul>
   <li><code>size</code>: the size of the segment in bits.</li>
@@ -24,3 +30,9 @@
   Bit arrays have limited support when compiling to JavaScript, not all options
   can be used. Full bit array support will be implemented in future.
 </p>
+<p data-translate="ja">
+  ビット配列は JavaScript にコンパイルする際のサポートに制限があり、全てのオプションが使えるわけではありません。ビット配列の完全なサポートは将来実装される予定です。
+</p>
+<div data-note="info">
+  <p data-translate="ja">オプションを複数組み合わせるには <code>&lt;&lt;3:size(4)-unit(4)&gt;&gt;</code> のようにハイフンでオプションを繋ぎます。詳細は <a href="https://gleam.run/book/tour/bit-arrays.html#bit-array-segment-options">Bit Array Segment Options</a> を参照してください。ただし、このハイフン繋ぎの構文は JavaScript でサポートされていません。</p>
+</div>
